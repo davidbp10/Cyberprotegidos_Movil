@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/nav_pets"
-        android:name="es.example.cyberprotegidos.ui.pets.PetsFragment"
-        android:label="@string/menu_pets"
-        tools:layout="@layout/fragment_pets" />
+        android:name="es.example.cyberprotegidos.ui.reservas.ReservasFragment"
+        android:label="@string/menu_reservas"
+        tools:layout="@layout/fragment_reservas" />
 </navigation>

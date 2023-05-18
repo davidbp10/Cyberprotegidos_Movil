@@ -15,36 +15,36 @@
             android:layout_height="wrap_content"
             android:padding="16dp">
             <TextView
-                android:id="@+id/textViewPetName"
+                android:id="@+id/textViewSalaName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nombre de la mascota"
+                android:text="Nombre de la Sala"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold" />
             <TextView
-                android:id="@+id/textViewPetType"
+                android:id="@+id/textViewSalaType"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/textViewPetName"
-                android:text="Tipo de mascota"
+                android:layout_below="@id/textViewSalaName"
+                android:text="Tipo de sala"
                 android:textColor="@color/dark_gray"
                 android:textSize="16sp" />
             <TextView
-                android:id="@+id/textViewPetAge"
+                android:id="@+id/textViewSalaAge"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/textViewPetType"
+                android:layout_below="@id/textViewSalaType"
                 android:text="Edad de la mascota"
                 android:textColor="@color/dark_gray"
                 android:textSize="16sp" />
             <Button
-                android:id="@+id/buttonAdopt"
+                android:id="@+id/buttonVer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:text="Adoptar"
+                android:text="Ver"
                 android:textColor="@color/white" />
         </RelativeLayout>
     </LinearLayout>

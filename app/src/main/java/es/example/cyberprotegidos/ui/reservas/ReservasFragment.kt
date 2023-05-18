@@ -1,4 +1,4 @@
-package es.example.cyberprotegidos.ui.pets
+package es.example.cyberprotegidos.ui.reservas
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,27 +8,27 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import es.example.cyberprotegidos.databinding.FragmentPetsBinding
+import es.example.cyberprotegidos.databinding.FragmentReservasBinding
 
-class PetsFragment : Fragment() {
+class ReservasFragment : Fragment() {
 
-    private var _binding: FragmentPetsBinding? = null
+    private var _binding: FragmentReservasBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: MascotaAdapter
-    private lateinit var viewModel: PetsViewModel
+    private lateinit var adapter: ReservaAdapter
+    private lateinit var viewModel: ReservasViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentPetsBinding.inflate(inflater, container, false)
+        _binding = FragmentReservasBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         recyclerView = binding.recyclerView
-        adapter = MascotaAdapter()
+        adapter = ReservaAdapter()
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
@@ -38,7 +38,7 @@ class PetsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this).get(PetsViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(ReservasViewModel::class.java)
 
         viewModel.getMascotas().observe(viewLifecycleOwner) { mascotas ->
             adapter.setMascotas(mascotas)
