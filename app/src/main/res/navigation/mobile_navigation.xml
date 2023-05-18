@@ -18,7 +18,7 @@
         tools:layout="@layout/fragment_salas" />
 
     <fragment
-        android:id="@+id/nav_pets"
+        android:id="@+id/nav_reservas"
         android:name="es.example.cyberprotegidos.ui.reservas.ReservasFragment"
         android:label="@string/menu_reservas"
         tools:layout="@layout/fragment_reservas" />

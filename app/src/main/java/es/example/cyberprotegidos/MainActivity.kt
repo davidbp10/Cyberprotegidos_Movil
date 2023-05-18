@@ -17,6 +17,7 @@ import es.example.cyberprotegidos.databinding.ActivityMainBinding
 import es.example.cyberprotegidos.ui.reservas.Reserva
 import es.example.cyberprotegidos.ui.reservas.ReservaAdapter
 import es.example.cyberprotegidos.ui.reservas.ReservasFragment
+import es.example.cyberprotegidos.ui.reservas.ReservasViewModel
 
 class MainActivity : AppCompatActivity() {
 
@@ -47,20 +48,7 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-    }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.nav_reservas-> {
-                // Aquí se ejecutará el código cuando se seleccione el elemento de menú "nav_reservas"
-                // Define la acción para abrir la actividad "Reserva"
-                val intent = Intent(this@MainActivity, ReservasFragment::class.java)
-                startActivity(intent)
-                return true
-            }
-            // Puedes manejar otros elementos de menú aquí si es necesario
-            else -> return super.onOptionsItemSelected(item)
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

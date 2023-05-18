@@ -15,27 +15,19 @@
             android:layout_height="wrap_content"
             android:padding="16dp">
             <TextView
-                android:id="@+id/textViewSalaName"
+                android:id="@+id/textViewReservaTipo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nombre de la Sala"
+                android:text="Tipo de sala"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold" />
             <TextView
-                android:id="@+id/textViewSalaType"
+                android:id="@+id/textViewReservaFechaIni"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/textViewSalaName"
-                android:text="Tipo de sala"
-                android:textColor="@color/dark_gray"
-                android:textSize="16sp" />
-            <TextView
-                android:id="@+id/textViewSalaAge"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/textViewSalaType"
-                android:text="Edad de la mascota"
+                android:layout_below="@id/textViewReservaTipo"
+                android:text="Nombre usuario"
                 android:textColor="@color/dark_gray"
                 android:textSize="16sp" />
             <Button

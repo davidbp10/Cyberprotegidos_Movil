@@ -10,16 +10,8 @@ class ReservasViewModel : ViewModel() {
     init {
         // Lista de mascotas
         val reservas = listOf(
-            Reserva("Luna", "Golden Retriever", 2),
-            Reserva("Rocky", "Bulldog", 4),
-            Reserva("Simba", "Persa", 1),
-            Reserva("Coco", "Chihuahua", 3),
-            Reserva("Max", "Labrador Retriever", 5),
-            Reserva("Milo", "Schnauzer", 2),
-            Reserva("Pelusa", "Poodle", 4),
-            Reserva("Toby", "Beagle", 3),
-            Reserva("Canela", "Dachshund", 1),
-            Reserva("Rufus", "Rottweiler", 6)
+            Reserva("Tutoria", "Ampiter", "12345678L", 123456789, "1@gmail.com", "12/02/03", "25/09/2006", 2, "Ta guay"),
+            Reserva("Congreso", "Manueh", "12345678L", 123456789, "1@gmail.com", "12/02/03", "25/09/2006", 30, "Cacota"),
         )
         mascotasLiveData.value = reservas
     }

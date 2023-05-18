@@ -21,9 +21,8 @@ class ReservaAdapter(private var reservas: List<Reserva>) :
     // Esta clase almacena las referencias de los elementos de la vista
     // (los widgets o views) que se muestran en cada elemento de la lista.
     inner class MascotaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val nombreTextView: TextView = itemView.findViewById(R.id.textViewSalaName)
-        val razaTextView: TextView = itemView.findViewById(R.id.textViewSalaType)
-        val edadTextView: TextView = itemView.findViewById(R.id.textViewSalaAge)
+        val tipoTextView: TextView = itemView.findViewById(R.id.textViewReservaTipo)
+        val fechaIniTextView: TextView = itemView.findViewById(R.id.textViewReservaFechaIni)
         val adoptButton: Button = itemView.findViewById(R.id.buttonVer)
     }
 
@@ -41,13 +40,12 @@ class ReservaAdapter(private var reservas: List<Reserva>) :
     // El método onBindViewHolder() se llama para establecer los datos del objeto Mascota en la
     // vista MascotaViewHolder.
     override fun onBindViewHolder(holder: ReservaAdapter.MascotaViewHolder, position: Int) {
-        val currentPet = reservas[position]
-        holder.nombreTextView.text = currentPet.nombre
-        holder.razaTextView.text = currentPet.raza
-        holder.edadTextView.text = "%s %d".format("Edad: ", currentPet.edad)
+        val currentReserva = reservas[position]
+        holder.tipoTextView.text = currentReserva.tipo
+        holder.fechaIniTextView.text = currentReserva.fechaIni
 
         holder.adoptButton.setOnClickListener {
-            Toast.makeText(holder.itemView.context, "¡Has adoptado a ${currentPet.nombre}!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(holder.itemView.context, "¡Has adoptado a ${currentReserva.nombre}!", Toast.LENGTH_SHORT).show()
         }
     }
 
