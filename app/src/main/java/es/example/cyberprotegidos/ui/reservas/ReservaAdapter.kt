@@ -1,5 +1,6 @@
 package es.example.cyberprotegidos.ui.reservas
 
+import android.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -37,6 +38,20 @@ class ReservaAdapter(private var reservas: List<Reserva>) :
         return MascotaViewHolder(itemView)
     }
 
+    private fun mostrarDetallesReserva(holder: ReservaAdapter.MascotaViewHolder, reserva: Reserva) {
+        val dialogBuilder = AlertDialog.Builder(holder.itemView.context)
+        dialogBuilder.setTitle("DETALLES DE LA RESERVA")
+        dialogBuilder.setMessage("DATOS SALA \nTipo: ${reserva.tipo}\nFecha de inicio: ${reserva.fechaIni}" +
+                "\nFecha de finalización: ${reserva.fechaFin}\nNúmero de personas: ${reserva.numPersonas}" +
+                "\n\nDATOS CLIENTE \nNombre: ${reserva.nombre}\nDNI: ${reserva.dni}\nTelefono: ${reserva.telefono}" +
+                "\nEmail: ${reserva.email}\nComentario: ${reserva.comentario}")
+        dialogBuilder.setPositiveButton("Volver") { dialog, _ ->
+            dialog.dismiss()
+        }
+        val dialog = dialogBuilder.create()
+        dialog.show()
+    }
+
     // El método onBindViewHolder() se llama para establecer los datos del objeto Mascota en la
     // vista MascotaViewHolder.
     override fun onBindViewHolder(holder: ReservaAdapter.MascotaViewHolder, position: Int) {
@@ -45,7 +60,7 @@ class ReservaAdapter(private var reservas: List<Reserva>) :
         holder.fechaIniTextView.text = currentReserva.fechaIni
 
         holder.adoptButton.setOnClickListener {
-            Toast.makeText(holder.itemView.context, "¡Has adoptado a ${currentReserva.nombre}!", Toast.LENGTH_SHORT).show()
+            mostrarDetallesReserva(holder, currentReserva)
         }
     }
 
