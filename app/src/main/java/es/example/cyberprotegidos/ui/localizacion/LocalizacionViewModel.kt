@@ -1,13 +1,13 @@
-package es.example.cyberprotegidos.ui.home
+package es.example.cyberprotegidos.ui.localizacion
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class HomeViewModel : ViewModel() {
+class LocalizacionViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
+        value = "This is localizacion Fragment"
     }
     val text: LiveData<String> = _text
 }

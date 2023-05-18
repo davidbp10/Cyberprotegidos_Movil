@@ -48,6 +48,10 @@ class ReservaAdapter(private var reservas: List<Reserva>) :
         dialogBuilder.setPositiveButton("Volver") { dialog, _ ->
             dialog.dismiss()
         }
+
+        dialogBuilder.setNegativeButton("Eliminar") { dialog, _ ->
+            dialog.dismiss()
+        }
         val dialog = dialogBuilder.create()
         dialog.show()
     }
