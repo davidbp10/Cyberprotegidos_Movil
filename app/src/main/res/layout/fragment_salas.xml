@@ -64,7 +64,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewSalas_Taller"
-        app:srcCompat="@mipmap/ic_salas_talleres_foreground" />
+        app:srcCompat="@mipmap/ic_salas_congreso_foreground" />
 
     <TextView
         android:id="@+id/textViewSalas_Congreso"

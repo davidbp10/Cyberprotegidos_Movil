@@ -26,4 +26,10 @@
     <string name="fechaFin">Fecha de fin</string>
     <string name="numPersonas">Número de personas</string>
     <string name="comentario">Comentario</string>
+    <string name="img_salas_tutorias">Tutorias</string>
+    <string name="img_salas_taller">Talleres</string>
+    <string name="img_salas_congreso">Congresos</string>
+    <string name="texto_salas_congreso">La capacidad de las personas que puedan asistir a los congresos dependerá del sitio donde se celebre. Pretendemos que en dicho congreso podamos exponer ciberataques que se hayan producido a nivel global e incluso investigaciones propias. Se impartirán en auditorios, centros que tengan como mínimo una capacidad de 200 personas.</string>
+    <string name="texto_salas_taller">La capacidad de los talleres están limitadas según el aforo máximo del aula donde impartamos el taller. Pretendemos dar un taller educativo para un numero elevado de personas con el fin de enseñar a como evitar diferentes ciberataques y como se pueden solucionar. Se impartirán en un aula con una capacidad de unas 20-30 personas.</string>
+    <string name="texto_salas_tutoria">La capacidad de nuestras tutorías están limitadas a grupos de 6 personas como máximo. Pretendemos ayudar a las personas respondiendo sus dudas tanto individuales como colectivas. Se impartirán desde una plataforma online la cual detallaremos cuando aceptemos las reservas.</string>
 </resources>
