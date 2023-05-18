@@ -6,17 +6,76 @@
     android:layout_height="match_parent"
     tools:context=".ui.salas.SalasFragment">
 
-    <TextView
-        android:id="@+id/text_gallery"
-        android:layout_width="match_parent"
+    <ImageView
+        android:id="@+id/imageTutoria"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="20dp"
+
+        android:contentDescription="@string/img_salas_tutorias"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/ic_salas_tutorias_foreground" />
+
+    <TextView
+        android:id="@+id/textViewSalas_Tutoria"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/texto_salas_tutoria"
+        android:textColor="@color/dark_gray"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageTutoria" />
+
+    <ImageView
+        android:id="@+id/imageTaller"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+
+        android:contentDescription="@string/img_salas_taller"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewSalas_Tutoria"
+        app:srcCompat="@mipmap/ic_salas_talleres_foreground" />
+
+    <TextView
+        android:id="@+id/textViewSalas_Taller"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/texto_salas_taller"
+        android:textColor="@color/dark_gray"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageTaller" />
+
+    <ImageView
+        android:id="@+id/imageCongreso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+
+        android:contentDescription="@string/img_salas_congreso"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewSalas_Taller"
+        app:srcCompat="@mipmap/ic_salas_talleres_foreground" />
+
+    <TextView
+        android:id="@+id/textViewSalas_Congreso"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/texto_salas_congreso"
+        android:textColor="@color/dark_gray"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageCongreso" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
