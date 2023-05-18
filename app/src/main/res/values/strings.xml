@@ -11,10 +11,19 @@
     <string name="menu_salas">Salas</string>
     <string name="menu_reservas">Reservas</string>
     <string name="anadir_reserva">Añadir reserva</string>
-    <string name="texto_salas_tutoria">La capacidad de nuestras tutorías están limitadas a grupos de 6 personas como máximo. Pretendemos ayudar a las personas respondiendo sus dudas tanto individuales como colectivas. Se impartirán desde una plataforma online la cual detallaremos cuando aceptemos las reservas.</string>
-    <string name="img_salas_tutorias">Tutorias</string>
-    <string name="img_salas_taller">taller</string>
-    <string name="img_salas_congreso">Congreso</string>
-    <string name="texto_salas_taller">La capacidad de los talleres están limitadas según el aforo máximo del aula donde impartamos el taller. Pretendemos dar un taller educativo para un numero elevado de personas con el fin de enseñar a como evitar diferentes ciberataques y como se pueden solucionar. Se impartirán en un aula con una capacidad de unas 20-30 personas.</string>
-    <string name="texto_salas_congreso">La capacidad de las personas que puedan asistir a los congresos dependerá del sitio donde se celebre. Pretendemos que en dicho congreso podamos exponer ciberataques que se hayan producido a nivel global e incluso investigaciones propias. Se impartirán en auditorios, centros que tengan como mínimo una capacidad de 200 personas.</string>
+    <string name="correo_electronico">Correo electrónico</string>
+    <string name="nombre_user">Nombre</string>
+    <string name="enviar">Enviar</string>
+    <string name="hello_blank_fragment">Hello\n</string>
+    <string name="Volver">Volver</string>
+    <string name="formulario">Formulario de reserva</string>
+    <string name="tipo_de_sala">Tipo de sala</string>
+    <string name="nombre">Nombre</string>
+    <string name="dni">DNI</string>
+    <string name="telefono">Teléfono</string>
+    <string name="email">Email</string>
+    <string name="fechaIni">Fecha de inicio</string>
+    <string name="fechaFin">Fecha de fin</string>
+    <string name="numPersonas">Número de personas</string>
+    <string name="comentario">Comentario</string>
 </resources>

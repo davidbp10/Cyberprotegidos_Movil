@@ -13,6 +13,15 @@
         android:theme="@style/Theme.Cyberprotegidos"
         tools:targetApi="31">
         <activity
+            android:name=".ui.formulario.FormActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.FormularioActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.formulario.Formulario"
+            android:exported="false" />
+        <activity
             android:name=".ui.reservas"
             android:exported="false" />
         <activity
