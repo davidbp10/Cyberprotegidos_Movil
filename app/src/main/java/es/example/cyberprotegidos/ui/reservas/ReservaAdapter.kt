@@ -45,13 +45,15 @@ class ReservaAdapter(private var reservas: List<Reserva>) :
                 "\nFecha de finalización: ${reserva.fechaFin}\nNúmero de personas: ${reserva.numPersonas}" +
                 "\n\nDATOS CLIENTE \nNombre: ${reserva.nombre}\nDNI: ${reserva.dni}\nTelefono: ${reserva.telefono}" +
                 "\nEmail: ${reserva.email}\nComentario: ${reserva.comentario}")
-        dialogBuilder.setPositiveButton("Volver") { dialog, _ ->
-            dialog.dismiss()
-        }
 
         dialogBuilder.setNegativeButton("Eliminar") { dialog, _ ->
             dialog.dismiss()
         }
+
+        dialogBuilder.setPositiveButton("Modificar") { dialog, _ ->
+            dialog.dismiss()
+        }
+
         val dialog = dialogBuilder.create()
         dialog.show()
     }
