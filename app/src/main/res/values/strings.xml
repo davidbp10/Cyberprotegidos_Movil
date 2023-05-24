@@ -32,7 +32,7 @@
     <string name="texto_salas_congreso1">La capacidad de las personas que puedan asistir a los congresos dependerá del sitio donde se celebre. </string>
     <string name="texto_salas_congreso2">Pretendemos que en dicho congreso podamos exponer ciberataques que se hayan producido a nivel global e incluso investigaciones propias. Se impartirán en auditorios, centros que tengan como mínimo una capacidad de 200 personas.</string>
     <string name="texto_salas_taller1">La capacidad de los talleres están limitadas según el aforo máximo del aula donde impartamos el taller.</string>
-    <string name="texto_salas_taller2">Pretendemos dar un taller educativo para un numero elevado de personas con el fin de enseñar a como evitar diferentes ciberataques y como se pueden solucionar. Se impartirán en un aula con una capacidad de unas 20-30 personas.</string>
+    <string name="texto_salas_taller2">Pretendemos dar un taller educativo para un numero elevado de personas con el fin de enseñar a como evitar diferentes ciberataques y como se pueden solucionar. Se impartirán en un aula con una capacidad de unas 20–30 personas.</string>
     <string name="texto_salas_tutoria1">La capacidad de nuestras tutorías están limitadas a grupos de 6 personas como máximo. </string>
     <string name="texto_salas_tutoria2">Pretendemos ayudar a las personas respondiendo sus dudas tanto individuales como colectivas. Se impartirán desde una plataforma online la cual detallaremos cuando aceptemos las reservas.</string>
     <string name="sala">Sala</string>
@@ -70,6 +70,8 @@
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
     <string name="app_widget_description">This is an app widget description</string>
+    <string name="ip_address">192.168.1.136</string>
+    <string name="server_port">8080</string>
 
 
 </resources>

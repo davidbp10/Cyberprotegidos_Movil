@@ -1,80 +1,116 @@
 package es.example.cyberprotegidos.ui.reservas
 
-import android.app.AlertDialog
+import android.app.Activity
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
+import es.example.cyberprotegidos.ui.api.ApiService
 import es.example.cyberprotegidos.R
+import es.example.cyberprotegidos.ui.formulario.UpdateFormActivity
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
-// Define la clase MascotaAdapter y extiende la clase
-// RecyclerView.Adapter<MascotaAdapter.MascotaViewHolder>. Esta clase maneja el conjunto de datos
-// de Mascota y lo une con la vista que se va a mostrar en la lista.
-class ReservaAdapter(private var reservas: List<Reserva>) :
-
-    // Se define la clase interna MascotaViewHolder, que extiende de la clase
-    // RecyclerView.ViewHolder.
-    RecyclerView.Adapter<ReservaAdapter.MascotaViewHolder>() {
-
-    // Esta clase almacena las referencias de los elementos de la vista
-    // (los widgets o views) que se muestran en cada elemento de la lista.
-    inner class MascotaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val tipoTextView: TextView = itemView.findViewById(R.id.textViewReservaTipo)
-        val fechaIniTextView: TextView = itemView.findViewById(R.id.textViewReservaFechaIni)
-        val adoptButton: Button = itemView.findViewById(R.id.buttonVer)
+class ReservaAdapter (private val reservas:List<Reserva>, private val recyclerView: RecyclerView): RecyclerView.Adapter<ReservaAdapter.ReservaViewHolder>() {
+    class ReservaViewHolder(itemView:View):RecyclerView.ViewHolder(itemView){
+        val tipoTextView: TextView = itemView.findViewById(R.id.reserva_text_tipo)
+        val nombreTextView: TextView = itemView.findViewById(R.id.reserva_text_nombre)
+        val dniTextView: TextView = itemView.findViewById(R.id.reserva_text_dni)
+        val telefonoTextView: TextView = itemView.findViewById(R.id.reserva_text_telefono)
+        val emailTextView: TextView = itemView.findViewById(R.id.reserva_text_email)
+        val idTextView: TextView = itemView.findViewById((R.id.reserva_text_id))
+        val id = idTextView.text
+        val fechaIniTextView : TextView = itemView.findViewById(R.id.reserva_text_fechaIni)
+        val fechaFinTextView : TextView = itemView.findViewById(R.id.reserva_text_fechaFin)
+        val numPersonasTextView : TextView = itemView.findViewById(R.id.reserva_text_numPersonas)
+        val comentarioTextView : TextView = itemView.findViewById(R.id.reserva_text_comentario)
+        val verMasButton : Button = itemView.findViewById(R.id.reserva_button_ver_mas)
+        val extraFields : RelativeLayout = itemView.findViewById(R.id.reserva_relative_2)
+        val deleteButton : Button = itemView.findViewById(R.id.reserva_button_eliminar)
+        val editButton : Button = itemView.findViewById(R.id.reserva_button_edit)
     }
 
-    constructor() : this(emptyList())
-
-    // El método onCreateViewHolder() se encarga de crear una nueva instancia de MascotaViewHolder,
-    // inflando el diseño de vista desde el archivo de diseño XML que se proporciona en el
-    // parámetro viewType.
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MascotaViewHolder {
-        val itemView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.list_item_reserva, parent, false)
-        return MascotaViewHolder(itemView)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReservaViewHolder {
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.list_item_reserva,parent,false)
+        return ReservaViewHolder(itemView)
     }
 
-    private fun mostrarDetallesReserva(holder: ReservaAdapter.MascotaViewHolder, reserva: Reserva) {
-        val dialogBuilder = AlertDialog.Builder(holder.itemView.context)
-        dialogBuilder.setTitle("DETALLES DE LA RESERVA")
-        dialogBuilder.setMessage("DATOS SALA \nTipo: ${reserva.tipo}\nFecha de inicio: ${reserva.fechaIni}" +
-                "\nFecha de finalización: ${reserva.fechaFin}\nNúmero de personas: ${reserva.numPersonas}" +
-                "\n\nDATOS CLIENTE \nNombre: ${reserva.nombre}\nDNI: ${reserva.dni}\nTelefono: ${reserva.telefono}" +
-                "\nEmail: ${reserva.email}\nComentario: ${reserva.comentario}")
-
-        dialogBuilder.setNegativeButton("Eliminar") { dialog, _ ->
-            dialog.dismiss()
-        }
-
-        dialogBuilder.setPositiveButton("Modificar") { dialog, _ ->
-            dialog.dismiss()
-        }
-
-        val dialog = dialogBuilder.create()
-        dialog.show()
-    }
-
-    // El método onBindViewHolder() se llama para establecer los datos del objeto Mascota en la
-    // vista MascotaViewHolder.
-    override fun onBindViewHolder(holder: ReservaAdapter.MascotaViewHolder, position: Int) {
+    override fun onBindViewHolder(
+        holder: ReservaViewHolder,
+        position: Int,
+    ) {
         val currentReserva = reservas[position]
-        holder.tipoTextView.text = currentReserva.tipo
-        holder.fechaIniTextView.text = currentReserva.fechaIni
+        holder.idTextView.text = currentReserva._id
+        holder.tipoTextView.text = "Tipo: " + currentReserva.tipo
+        holder.nombreTextView.text = "Nombre: " + currentReserva.nombre
+        holder.dniTextView.text = "DNI: " + currentReserva.dni
+        holder.telefonoTextView.text = "Telefono: " + currentReserva.telefono
+        holder.emailTextView.text = "Email: " + currentReserva.email
+        holder.fechaIniTextView.text = "Inicio: " +  currentReserva.fechaIni
+        holder.fechaFinTextView.text = "Fin: " + currentReserva.fechaFin
+        holder.numPersonasTextView.text = "Personas: " + currentReserva.numPersonas
+        holder.comentarioTextView.text = "Sala: " + currentReserva.comentario
 
-        holder.adoptButton.setOnClickListener {
-            mostrarDetallesReserva(holder, currentReserva)
+        holder.verMasButton.setOnClickListener {
+            val gone = holder.extraFields.visibility == View.GONE
+            if(gone){
+                holder.extraFields.visibility = View.VISIBLE
+                holder.verMasButton.text = "Ver menos"
+            }else{
+                holder.extraFields.visibility = View.GONE
+                holder.verMasButton.text = "Ver Más"
+            }
+        }
+
+        holder.editButton.setOnClickListener{
+            val context = holder.itemView.context
+            val intent = Intent(context, UpdateFormActivity::class.java)
+            intent.putExtra("id", currentReserva._id)
+            intent.putExtra("tipo", currentReserva.tipo)
+            intent.putExtra("nombre", currentReserva.nombre)
+            intent.putExtra("dni", currentReserva.dni)
+            intent.putExtra("telefono", currentReserva.telefono)
+            intent.putExtra("email", currentReserva.email)
+            intent.putExtra("fechaIni", currentReserva.fechaIni)
+            intent.putExtra("fechaFin",currentReserva.fechaFin)
+            intent.putExtra("numPersonas", currentReserva.numPersonas)
+            intent.putExtra("comentario", currentReserva.comentario)
+            context.startActivity(intent)
+        }
+
+        holder.deleteButton.setOnClickListener {
+            GlobalScope.launch(Dispatchers.IO) {
+                val apiService = ApiService(holder.itemView.context)
+                val id = holder.idTextView.text as String
+                val result : Boolean = apiService.deleteReserva(id)
+                withContext(Dispatchers.Main){
+                    val snack : Snackbar
+                    if(result){
+                        snack = Snackbar.make(it, "Eliminado con éxito", Snackbar.LENGTH_LONG)
+                        snack.show()
+                        val newReservas = reservas.filter { item -> item._id != id }
+                        val adapter = ReservaAdapter(newReservas, recyclerView)
+                        recyclerView.adapter = adapter
+                        adapter.notifyDataSetChanged()
+                    }
+                    else{
+                        snack = Snackbar.make(it, "Ha habido un error en la operación :(", Snackbar.LENGTH_LONG)
+                        snack.show()
+                    }
+                }
+            }
         }
     }
-
-    // El método getItemCount() devuelve el número de elementos en la lista de Mascotas
-    // proporcionado en el constructor de MascotaAdapter.
-    override fun getItemCount() = reservas.size
-
-    fun setMascotas(reservas: List<Reserva>) {
-        this.reservas = reservas
+    override fun getItemCount(): Int {
+        return reservas.size
     }
 }

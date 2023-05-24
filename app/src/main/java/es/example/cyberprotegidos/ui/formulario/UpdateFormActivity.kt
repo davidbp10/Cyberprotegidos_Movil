@@ -6,13 +6,13 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Patterns
+import android.text.Editable
 import android.widget.Button
 import android.widget.DatePicker
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.TimePicker
 import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
 import es.example.cyberprotegidos.MainActivity
 import es.example.cyberprotegidos.R
 import es.example.cyberprotegidos.ui.api.ApiService
@@ -28,8 +28,8 @@ import java.util.Date
 import java.util.Locale
 import java.util.TimeZone
 
-
-class FormActivity : AppCompatActivity() {
+class UpdateFormActivity : AppCompatActivity() {
+    private lateinit var textId : TextView
     private lateinit var editTextTipo: EditText
     private lateinit var editTextNombre: EditText
     private lateinit var editTextDni: EditText
@@ -43,20 +43,46 @@ class FormActivity : AppCompatActivity() {
     private lateinit var buttonCancelar: Button
 
     private val calendar = Calendar.getInstance()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_form)
+        setContentView(R.layout.activity_update_form)
 
-        editTextTipo = findViewById(R.id.tipo_sala_edittext)
-        editTextNombre = findViewById(R.id.nombre_edittext)
-        editTextDni = findViewById(R.id.dni_edittext)
-        editTextTelefono = findViewById(R.id.telefono_edittext)
-        editTextFechaIni = findViewById(R.id.fecha_inicio_edittext)
-        editTextFechaFin = findViewById(R.id.fecha_fin_edittext)
-        editTextNumPersonas = findViewById(R.id.num_personas_edittext)
-        editTextComentario = findViewById(R.id.comentario_edittext)
-        buttonGuardar = findViewById(R.id.buttonGuardar)
-        buttonCancelar = findViewById(R.id.buttonCancelar)
+        textId = findViewById(R.id.updateTextId)
+        editTextTipo = findViewById(R.id.update_tipo_sala_edittext)
+        editTextNombre = findViewById(R.id.update_nombre_edittext)
+        editTextDni = findViewById(R.id.update_dni_edittext)
+        editTextTelefono = findViewById(R.id.update_telefono_edittext)
+        editTextEmail = findViewById(R.id.update_email_edittext)
+        editTextFechaIni = findViewById(R.id.update_fecha_inicio_edittext)
+        editTextFechaFin = findViewById(R.id.update_fecha_fin_edittext)
+        editTextNumPersonas = findViewById(R.id.update_num_personas_edittext)
+        editTextComentario = findViewById(R.id.update_comentario_edittext)
+        buttonGuardar = findViewById(R.id.updateButtonGuardar)
+        buttonCancelar = findViewById(R.id.updateButtonCancelar)
+        val extras = intent.extras
+        val id = extras?.getString("id")
+        val tipo = extras?.getString("tipo")
+        val name = extras?.getString("name")
+        val dni = extras?.getString("dni")
+        val telefono = extras?.getString("telefono")
+        val email = extras?.getString("email")
+        val fechaIni = extras?.getString("fechaIni")
+        val fechaFin = extras?.getString("fechaFin")
+        val numPersonas = extras?.getString("numPersonas")
+        val comentario = extras?.getString("comentario")
+
+        textId.text = "Reserva: ${id}"
+        editTextTipo.setText(tipo)
+        editTextNombre.setText(name)
+        editTextDni.setText(dni)
+        editTextTelefono.setText(telefono)
+        editTextEmail.setText(email)
+        editTextFechaIni.setText(fechaIni)
+        editTextFechaFin.setText(fechaFin)
+        editTextNumPersonas.setText(numPersonas)
+        editTextComentario.setText(comentario)
+
 
         editTextFechaIni.setOnClickListener {
             showFechaIniPicker()
@@ -66,10 +92,11 @@ class FormActivity : AppCompatActivity() {
             showFechaFinPicker()
         }
 
+
         buttonGuardar.setOnClickListener {
 
             if(validateFields())  {
-                val reservaRequest = ReservaRequest(
+                val reservaRequest = ReservaRequest (
                     editTextTipo.text.toString().trim(),
                     editTextNombre.text.toString().trim(),
                     editTextDni.text.toString().trim(),
@@ -79,18 +106,26 @@ class FormActivity : AppCompatActivity() {
                     editTextFechaFin.text.toString().trim(),
                     editTextNumPersonas.text.toString().trim(),
                     editTextComentario.text.toString().trim()
-                )
+                    )
                 val context = this
                 GlobalScope.launch(Dispatchers.IO) {
-                    if(postBooking(reservaRequest,context)){
-                        withContext(Dispatchers.Main){
-                            Toast.makeText(context, "Reserva añadida", Toast.LENGTH_SHORT).show()
+                    if(id != null)
+                    {
+                        if(putBooking(reservaRequest,context, id)){
+                            withContext(Dispatchers.Main){
+                                Toast.makeText(context, "Reserva actualizada", Toast.LENGTH_SHORT).show()
+                            }
+                        }else{
+                            withContext(Dispatchers.Main){
+                                Toast.makeText(context, "Ha ocurrido un error", Toast.LENGTH_SHORT).show()
+                            }
                         }
                     }else{
                         withContext(Dispatchers.Main){
                             Toast.makeText(context, "Ha ocurrido un error", Toast.LENGTH_SHORT).show()
                         }
                     }
+
                     withContext(Dispatchers.Main){
                         val intent = Intent(context, MainActivity::class.java)
                         startActivity(intent)
@@ -168,7 +203,7 @@ class FormActivity : AppCompatActivity() {
         val comentario = editTextComentario.text.toString().trim()
 
         if (tipo.isEmpty()) {
-            editTextTipo.error = "Ingrese un apellido"
+            editTextTipo.error = "Ingrese un tipo"
             editTextTipo.requestFocus()
             return false
         }
@@ -180,31 +215,31 @@ class FormActivity : AppCompatActivity() {
         }
 
         if (dni.isEmpty()) {
-            editTextDni.error = "Ingrese un apellido"
+            editTextDni.error = "Ingrese un DNI"
             editTextDni.requestFocus()
             return false
         }
 
         if (telefono.isEmpty()) {
-            editTextTelefono.error = "Seleccione una fecha"
+            editTextTelefono.error = "Ingrese un teléfono"
             editTextTelefono.requestFocus()
             return false
         }
 
         if (email.isEmpty()) {
-            editTextEmail.error = "Seleccione una fecha"
+            editTextEmail.error = "Ingrese un email"
             editTextEmail.requestFocus()
             return false
         }
 
         if (fechaIni.isEmpty()) {
-            editTextFechaIni.error = "Seleccione una hora de inicio"
+            editTextFechaIni.error = "Seleccione una fecha de inicio"
             editTextFechaIni.requestFocus()
             return false
         }
 
         if (fechaFin.isEmpty()) {
-            editTextFechaFin.error = "Seleccione una hora de fin"
+            editTextFechaFin.error = "Seleccione una fecha de fin"
             editTextFechaFin.requestFocus()
             return false
         }
@@ -216,7 +251,7 @@ class FormActivity : AppCompatActivity() {
         }
 
         if (comentario.isEmpty()) {
-            editTextComentario.error = "Ingrese el número de sala"
+            editTextComentario.error = "Ingrese un comentario"
             editTextComentario.requestFocus()
             return false
         }
@@ -233,8 +268,8 @@ class FormActivity : AppCompatActivity() {
 
         val selectedFechaFin = parseDate(fechaFin)
         if (selectedFechaFin != null && selectedFechaFin.after(selectedFechaIni)) {
-            editTextFechaFin.error = "La fecha de inicio no puede ser antes que hoy"
-            editTextFechaFin.requestFocus()
+            editTextFechaIni.error = "La fecha de inicio no puede ser antes que hoy"
+            editTextFechaIni.requestFocus()
             return false
         }
 
@@ -251,8 +286,8 @@ class FormActivity : AppCompatActivity() {
         }
     }
 
-    private suspend fun postBooking(request: ReservaRequest, context: Context) : Boolean{
+    private suspend fun putBooking(request: ReservaRequest, context: Context, id:String) : Boolean{
         val service = ApiService(context)
-        return service.postReserva(request)
+        return service.putReserva(request, id)
     }
 }
